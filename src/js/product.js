@@ -15,7 +15,26 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 }
 
-// add listener to Add to Cart button
-document
-  .getElementById('addToCart')
-  .addEventListener('click', addToCartHandler);
+async function init() {
+  const productId = new URLSearchParams(window.location.search).get('product');
+  const product = await dataSource.findProductById(productId);
+
+  document.querySelector('.product__brand').textContent = product.Brand.Name;
+  document.querySelector('.product__name').textContent =
+    product.NameWithoutBrand;
+  const productImage = document.querySelector('.product__image');
+  productImage.src = product.Image;
+  productImage.alt = product.Name;
+  document.querySelector('.product-card__price').textContent =
+    `$${product.FinalPrice}`;
+  document.querySelector('.product__color').textContent =
+    product.Colors[0].ColorName;
+  document.querySelector('.product__description').innerHTML =
+    product.DescriptionHtmlSimple;
+
+  const addToCartButton = document.getElementById('addToCart');
+  addToCartButton.dataset.id = product.Id;
+  addToCartButton.addEventListener('click', addToCartHandler);
+}
+
+init();
