@@ -1,5 +1,6 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, getProductImage, setLocalStorage } from './utils.mjs';
 import ProductData from './ProductData.mjs';
+import './Search.mjs';
 
 const dataSource = new ProductData('tents');
 
@@ -23,7 +24,7 @@ async function init() {
   document.querySelector('.product__name').textContent =
     product.NameWithoutBrand;
   const productImage = document.querySelector('.product__image');
-  productImage.src = product.Image;
+  productImage.src = getProductImage(product, 'PrimaryLarge');
   productImage.alt = product.Name;
   document.querySelector('.product-card__price').textContent =
     `$${product.FinalPrice}`;

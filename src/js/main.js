@@ -1,5 +1,6 @@
 import ProductData from './ProductData.mjs';
 import ProductList from './ProductList.mjs';
+import './Search.mjs';
 
 const category = 'tents';
 const dataSource = new ProductData(category);
