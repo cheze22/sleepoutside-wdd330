@@ -35,3 +35,7 @@ export function renderListWithTemplate(
   const html = list.map(templateFn).join('');
   parentElement.insertAdjacentHTML(position, html);
 }
+
+export function getProductImage(product, size = 'PrimaryMedium') {
+  return product.Images?.[size] || product.Image;
+}
