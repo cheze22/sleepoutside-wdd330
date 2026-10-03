@@ -1,3 +1,5 @@
+import { updateCartIndicator } from './Cart.mjs';
+
 export function initSearchForm() {
   const form = document.querySelector('.search-form');
   if (!form) {
@@ -26,3 +28,4 @@ export function initSearchForm() {
 }
 
 initSearchForm();
+updateCartIndicator();
